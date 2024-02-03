@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import SideBar from "./components/SideBar";
+import AuthProvider from "./components/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,18 +13,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="winter">
       <body className={`${inter.className}`}>
-        <div className="md:flex justify-center w-full overflow-hidden">
-          <div className="flex flex-col md:min-w-[600px]">
-            <Navbar />
-            <main className="grid grid-cols-5 h-screen pt-[64.9px]">
-              <SideBar />
+        <AuthProvider>
+          <div className="md:flex justify-center w-full overflow-hidden">
+            <div className="flex flex-col md:min-w-[600px]">
+              <Navbar />
+              <main className="grid grid-cols-5 h-screen pt-[64.9px]">
+                <SideBar />
 
-              {children}
-            </main>
+                {children}
+              </main>
+            </div>
           </div>
-        </div>
+        </AuthProvider>
       </body>
     </html>
   );

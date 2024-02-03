@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { Suspense } from "react";
+import GroupList from "./GroupList";
 
 const SideBar = () => {
   return (
-    <div className='hidden md:block col-span-2 bg-red-300'>
-        asdsad
+    <div className="hidden md:block col-span-2 truncate bg-red-50">
+      <Suspense fallback={<span className="loading loading-ring loading-md"></span>}>
+        <GroupList />
+      </Suspense>
     </div>
-  )
-}
+  );
+};
 
-export default SideBar
+export default SideBar;
