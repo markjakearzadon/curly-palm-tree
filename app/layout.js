@@ -13,9 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="flex justify-center w-full">
-          <div className="flex flex-col min-w-[600px]">
+      <body className={`${inter.className}`}>
+        <div className="md:flex justify-center w-full overflow-hidden">
+          <div className="flex flex-col md:min-w-[600px]">
             <Navbar />
             <main className="grid grid-cols-5 h-screen pt-[64.9px]">
               <SideBar />

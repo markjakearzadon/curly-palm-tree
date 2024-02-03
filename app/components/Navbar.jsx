@@ -8,14 +8,14 @@ const Navbar = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <nav className="fixed min-w-[600px] p-5 border-b">
+    <nav className="fixed w-full md:w-auto md:min-w-[600px] p-5 border-b">
       <div className="flex justify-between">
         <span>
           <Link href="/">Nigga</Link>
         </span>
         <div className="flex gap-x-3">
           {session ? (
-            <Link href="/api/auth/signout">{session.user.name}</Link>
+            <Link href="/settings">{session.user.name}</Link>
           ) : (
             <>
               <Link href="/api/auth/signin">Sign in</Link>

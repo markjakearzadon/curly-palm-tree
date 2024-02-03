@@ -2,8 +2,8 @@ import React from 'react'
 
 const SideBar = () => {
   return (
-    <div className='col-span-2 bg-red-300'>
-        
+    <div className='hidden md:block col-span-2 bg-red-300'>
+        asdsad
     </div>
   )
 }
