@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const layout = ({ children }) => {
-  return (
-    <div>{ children }</div>
-  )
-}
+  return <div className="col-span-3">{children}</div>;
+};
 
-export default layout
+export default layout;
