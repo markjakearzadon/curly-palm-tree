@@ -11,7 +11,10 @@ export const authOptions = {
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
         })
-    ]
+    ],
+    session: {
+        strategy: "database"
+    }
 }
 const handler = NextAuth(authOptions)
 

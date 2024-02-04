@@ -1,6 +1,6 @@
 import React from "react";
 
-const layout = ({ children }) => {
+const layout = async ({ children }) => {
   return <div className="col-span-5 md:col-span-3">{children}</div>;
 };
 

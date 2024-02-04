@@ -1,3 +1,5 @@
+import plus from "../public/plus.svg"
+
 export const options = [
     {
         title: "Account",
@@ -40,3 +42,6 @@ export const options = [
         link: "/api/auth/signout"
     }
 ]
+
+
+export { plus }

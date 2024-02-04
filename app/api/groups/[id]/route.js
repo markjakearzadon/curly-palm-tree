@@ -20,22 +20,28 @@ export async function GET(request, { params: { id }}) {
             groupId: parseInt(id)
         }
     })
+
     let newmessages = await Promise.all(messages.map(async (message) => {
         const user = await prisma.user.findUnique({
             where: {
                 id: message.userId
             }
         })
-    
         return {
             ...message,
-            name: user.name
+            name: user.name,
         }
     }));
+
+    const group = await prisma.group.findUnique({
+        where: {
+            id: parseInt(id)
+        }
+    })
     
     if (!messages) {
         return NextResponse.error(new Error("No messages found"))
     }
 
-    return NextResponse.json({ messages: newmessages, user })
+    return NextResponse.json({ messages: newmessages, user, group })
 }
