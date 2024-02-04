@@ -1,9 +1,9 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 
 const Message = ({ groupId }) => {
   const [data, setData] = useState();
+
 
   useEffect(() => {
     const controller = new AbortController();

@@ -33,7 +33,6 @@ export async function GET(request, { params: { id }}) {
         }
     }));
     
-    console.log(newmessages)
     if (!messages) {
         return NextResponse.error(new Error("No messages found"))
     }
