@@ -40,6 +40,7 @@ model Session {
 
 model User {
   id            String         @id @default(cuid())
+  username      String         @unique @default(uuid())
   name          String?
   email         String?        @unique
   emailVerified DateTime?
@@ -55,7 +56,7 @@ model User {
 model Group {
   id        Int            @id @default(autoincrement())
   title     String
-  creator   User           @relation(fields: [creatorId], references: [id])
+  creator   User           @relation(fields: [creatorId], references: [username])
   creatorId String
   createdAt DateTime       @default(now())
   members   GroupMember[]
@@ -66,7 +67,7 @@ model GroupMessage {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   message   String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [username])
   userId    String
   group     Group    @relation(fields: [groupId], references: [id])
   groupId   Int
@@ -74,7 +75,7 @@ model GroupMessage {
 
 model GroupMember {
   id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [username])
   userId    String
   group     Group    @relation(fields: [groupId], references: [id])
   groupId   Int

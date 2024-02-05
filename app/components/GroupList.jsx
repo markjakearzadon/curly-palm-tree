@@ -9,32 +9,32 @@ import Image from "next/image";
 
 const GroupList = () => {
   const [groups, setGroups] = useState([]);
-  const { status, data: session } = useSession();
   const router = useRouter();
-
-  if (status === "unauthenticated") router.push("/api/auth/signin");
+  const { status, data: session } = useSession(null);
 
   useEffect(() => {
     const fetchGroups = async () => {
-      fetch("http://localhost:3000/api/groups")
-        .then((res) => res.json())
-        .then((data) => setGroups(data));
+      // fetch(`http://localhost:3000/api/${session.user?.username}/groups`)
+      //   .then((res) => res.json())
+      //   .then((data) => setGroups(data));
+      console.log(session)
     };
-
     fetchGroups();
-  }, []);
+  }, [status]);
 
   return (
     <div className="flex flex-col">
-      <div className="m-2 p-3 bg-sky-300 rounded-md">
-        <Link href="/create">
-          <Image
-            src={plus}
-            alt="create"
-            width={15}
-            height={15}
-          />
-        </Link>
+      <div className="flex m-2 p-3 bg-sky-200 rounded-md">
+        <div className="flex items-center justify-center rounded-full w-6 h-6 bg-sky-300">
+          <Link href="/create">
+            <Image
+              src={plus}
+              alt="create"
+              width={15}
+              height={15}
+            />
+          </Link>
+        </div>
       </div>
       {groups &&
         groups.map((group) => (
