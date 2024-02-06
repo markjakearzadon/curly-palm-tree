@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { plus } from "@/constant";
+import { kiwi, plus } from "@/constant";
 import Image from "next/image";
 
 const GroupList = () => {
@@ -12,13 +12,13 @@ const GroupList = () => {
   const router = useRouter();
   const { status, data: session } = useSession(null);
 
-
-  
   useEffect(() => {
     const fetchGroups = async () => {
-      fetch(`/api/user/group`)
-      .then((res) => res.json())
-      .then((data) => setGroups(data));
+      const grouplist = await fetch(`/api/user/group`)
+      const res = await grouplist.json()
+      setGroups(res)
+        // .then((res) => res.json())
+        // .then((data) => setGroups(data));
     };
     if (status === "authenticated") {
       fetchGroups();
@@ -30,11 +30,18 @@ const GroupList = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex m-2 p-3 bg-sky-200 rounded-md">
-        <div className="flex items-center justify-center rounded-full w-6 h-6 bg-sky-300">
-          <Link href="/create">
-            <Image src={plus} alt="create" width={15} height={15} />
-          </Link>
+      <div>
+        <div className="flex gap-x-2 m-2 p-3 bg-sky-200 rounded-md">
+          <div className="flex items-center justify-center rounded-full w-6 h-6 bg-sky-300">
+            <Link href="/create">
+              <Image src={plus} alt="create" width={15} height={15} />
+            </Link>
+          </div>
+          <div className="flex items-center justify-center rounded-full w-6 h-6 bg-sky-300">
+            <Link href="/join">
+              <Image src={kiwi} alt="create" width={15} height={15} />
+            </Link>
+          </div>
         </div>
       </div>
       {groups &&

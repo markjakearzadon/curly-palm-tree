@@ -1,4 +1,5 @@
 import plus from "../public/plus.svg"
+import kiwi from "../public/kiwi-bird-solid.svg"
 import profile from "../public/profile.png"
 
 export const options = [
@@ -45,4 +46,4 @@ export const options = [
 ]
 
 
-export { plus, profile }
+export { plus, profile, kiwi }

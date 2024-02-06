@@ -1,7 +1,9 @@
 "use client";
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 const Message = ({ groupId, data, setData, n, setN }) => {
+  const { status, data: session } = useSession()
 
   useEffect(() => {
     const controller = new AbortController();
@@ -13,11 +15,12 @@ const Message = ({ groupId, data, setData, n, setN }) => {
     }
     getMessages();
     setN(false)
+    console.log("first")
     return () => controller.abort();
   }, [n]);
 
   return (
-    <div className="flex flex-col p-3">
+    <div className="flex flex-col p-3 h-screen">
       <div className="flex justify-center w-full">
         <span className="">{data?.group?.title}</span>
       </div>
@@ -30,7 +33,7 @@ const Message = ({ groupId, data, setData, n, setN }) => {
             </div>
           )}
           {data?.messages?.map((message) =>
-            message.userId === data.user.id ? (
+            message.userId === session.user.id ? (
               <li key={message.id}>
                 <div className="chat chat-end">
                   <div className="chat-header">

@@ -7,10 +7,9 @@ const TextInput = ({ data, setN }) => {
   const [text, setText] = useState("");
   const { status, data: session } = useSession()
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    setText("");
     fetch("/api/message", {
       method: "POST",
       headers: {
@@ -21,12 +20,12 @@ const TextInput = ({ data, setN }) => {
         userId: session.user.id,
         groupId: data,
       }),
-    }).then((res) => {
-      console.log(res.status);
-      setN(true);
-    });
+    }).then(res => {
+      res.json()
+    }).then(data => setN(true))
+    setText("");
 
-    console.log(session)
+    console.log(session, data)
   };
 
   return (

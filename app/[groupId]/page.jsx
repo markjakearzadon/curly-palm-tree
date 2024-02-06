@@ -5,7 +5,7 @@ import Message from "../components/Message";
 import TextInput from "../components/TextInput";
 
 const GroupMessages = ({ params: { groupId } }) => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [ n, setN ] = useState(false);
 
   return (
