@@ -9,11 +9,11 @@ export async function GET(request, { params: { id }}) {
         return NextResponse.error(new Error("Unauthorized"))
     }
 
-    const user = await prisma.user.findUnique({
-        where: {
-            email: session.user.email
-        }
-    })
+    // const user = await prisma.user.findUnique({
+    //     where: {
+    //         email: session.user.email
+    //     }
+    // })
     
     const messages = await prisma.groupMessage.findMany({
         where: {
@@ -21,27 +21,28 @@ export async function GET(request, { params: { id }}) {
         }
     })
 
-    let newmessages = await Promise.all(messages.map(async (message) => {
-        const user = await prisma.user.findUnique({
-            where: {
-                id: message.userId
-            }
-        })
-        return {
-            ...message,
-            name: user.name,
-        }
-    }));
+    // let newmessages = await Promise.all(messages.map(async (message) => {
+    //     const user = await prisma.user.findUnique({
+    //         where: {
+    //             id: message.userId
+    //         }
+    //     })
+    //     return {
+    //         ...message,
+    //         name: user.name,
+    //     }
+    // }));
 
-    const group = await prisma.group.findUnique({
-        where: {
-            id: parseInt(id)
-        }
-    })
+    // const group = await prisma.group.findUnique({
+    //     where: {
+    //         id: parseInt(id)
+    //     }
+    // })
     
     if (!messages) {
         return NextResponse.error(new Error("No messages found"))
     }
 
-    return NextResponse.json({ messages: newmessages, user, group })
+    // return NextResponse.json({ messages: newmessages, user, group })
+    return NextResponse.json(messages)
 }

@@ -7,9 +7,7 @@ const Message = ({ groupId, data, setData, n, setN }) => {
     const controller = new AbortController();
 
     async function getMessages() {
-      fetch(`http://localhost:3000/api/groups/${parseInt(groupId)}`, {
-        cache: "no-store"
-      })
+      fetch(`http://localhost:3000/api/groups/${parseInt(groupId)}`)
         .then((res) => res.json())
         .then((d) => setData(d));
     }
@@ -31,7 +29,7 @@ const Message = ({ groupId, data, setData, n, setN }) => {
               <span className="loading loading-ring loading-md"></span>
             </div>
           )}
-          {data?.messages.map((message) =>
+          {data?.messages?.map((message) =>
             message.userId === data.user.id ? (
               <li key={message.id}>
                 <div className="chat chat-end">

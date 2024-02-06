@@ -11,7 +11,7 @@ const GroupMessages = ({ params: { groupId } }) => {
   return (
     <div className="col-span-3">
       <Message n={n} setN={setN} setData={setData} data={data} groupId={groupId} />
-      <TextInput setN={setN} data={data} />
+      <TextInput setN={setN} data={groupId} />
     </div>
   );
 };

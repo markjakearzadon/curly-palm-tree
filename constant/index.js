@@ -1,4 +1,5 @@
 import plus from "../public/plus.svg"
+import profile from "../public/profile.png"
 
 export const options = [
     {
@@ -44,4 +45,4 @@ export const options = [
 ]
 
 
-export { plus }
+export { plus, profile }

@@ -1,10 +1,10 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import SideBar from "./components/SideBar";
 import AuthProvider from "./components/AuthProvider";
+import { Raleway } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const raleway = Raleway({ subsets: ["latin"] });
 
 export const metadata = {
   title: "curly-palm-tree",
@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="winter">
-      <body className={`${inter.className}`}>
+      <body className={`${raleway.className}`}>
         <AuthProvider>
           <div className="md:flex justify-center w-full overflow-hidden">
             <div className="flex flex-col md:min-w-[600px]">

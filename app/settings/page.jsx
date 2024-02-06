@@ -3,6 +3,7 @@ import { options } from "@/constant";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import { profile } from "@/constant";
 
 import Image from "next/image";
 
@@ -13,15 +14,15 @@ const Settings = async () => {
     <div className="bg-red-100 pt-5">
         <div className="flex items-center gap-x-4 p-5">
             <Image
-                src={session.user.image}
+                src={session?.user?.image || profile}
                 alt="profile image"
                 width={64}
                 height={64}
                 className="rounded-full"
             />
             <div className="flex flex-col">
-              <span>{session.user.name}</span>
-              <span>{session.user.email}</span>
+              <span>{session?.user?.email || session?.user?.username}</span>
+              <span>{session?.user?.name || session?.user?.id}</span>
             </div>
         </div>
       {options.map((option) => (

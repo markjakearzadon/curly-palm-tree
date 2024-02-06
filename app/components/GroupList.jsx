@@ -12,14 +12,20 @@ const GroupList = () => {
   const router = useRouter();
   const { status, data: session } = useSession(null);
 
+
+  
   useEffect(() => {
     const fetchGroups = async () => {
-      // fetch(`http://localhost:3000/api/${session.user?.username}/groups`)
-      //   .then((res) => res.json())
-      //   .then((data) => setGroups(data));
-      console.log(session)
+      fetch(`/api/user/group`)
+      .then((res) => res.json())
+      .then((data) => setGroups(data));
     };
-    fetchGroups();
+    if (status === "authenticated") {
+      fetchGroups();
+    }
+    if (status === "unauthenticated") {
+      router.push("/create/user");
+    }
   }, [status]);
 
   return (
@@ -27,12 +33,7 @@ const GroupList = () => {
       <div className="flex m-2 p-3 bg-sky-200 rounded-md">
         <div className="flex items-center justify-center rounded-full w-6 h-6 bg-sky-300">
           <Link href="/create">
-            <Image
-              src={plus}
-              alt="create"
-              width={15}
-              height={15}
-            />
+            <Image src={plus} alt="create" width={15} height={15} />
           </Link>
         </div>
       </div>

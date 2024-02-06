@@ -1,9 +1,12 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 
 const TextInput = ({ data, setN }) => {
   const [text, setText] = useState("");
+  const { status, data: session } = useSession()
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -15,13 +18,15 @@ const TextInput = ({ data, setN }) => {
       },
       body: JSON.stringify({
         message: text,
-        userId: data.user.id,
-        groupId: data.group.id,
+        userId: session.user.id,
+        groupId: data,
       }),
     }).then((res) => {
       console.log(res.status);
       setN(true);
     });
+
+    console.log(session)
   };
 
   return (
