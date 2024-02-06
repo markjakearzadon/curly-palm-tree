@@ -5,10 +5,8 @@ import React, { useState } from "react";
 const CreatePage = () => {
   const [groupName, setGroupName] = useState("");
   const router = useRouter();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
-    setIsSubmitting(true);
     e.preventDefault();
     const res = await fetch("/api/groups", {
       method: "POST",
@@ -22,11 +20,9 @@ const CreatePage = () => {
     if (res.status === 201) {
       const data = await res.json();
       alert("Group created successfully");
-      setIsSubmitting(false);
       router.push(`/${data.newGroup.id}`);
     } else {
       alert("Something went wrong");
-      setIsSubmitting(false);
     }
     setGroupName("");
   };
@@ -50,7 +46,7 @@ const CreatePage = () => {
           <input
             type="submit"
             value="Create"
-            className={`btn ${isSubmitting && "btn-disabled"} w-fit`}
+            className={`${groupName ? "btn" : "btn btn-disabled"} w-fit`}
           />
         </div>
       </form>
