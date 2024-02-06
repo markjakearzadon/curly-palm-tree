@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 const Message = ({ groupId, data, setData, n, setN }) => {
-  const { status, data: session } = useSession()
+  const { status, data: session } = useSession();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -14,8 +14,7 @@ const Message = ({ groupId, data, setData, n, setN }) => {
         .then((d) => setData(d));
     }
     getMessages();
-    setN(false)
-    console.log("first")
+    setN(false);
     return () => controller.abort();
   }, [n]);
 
@@ -32,13 +31,15 @@ const Message = ({ groupId, data, setData, n, setN }) => {
               <span className="loading loading-ring loading-md"></span>
             </div>
           )}
-          {data?.messages?.map((message) =>
-            message.userId === session.user.id ? (
+          {data?.messages?.map((message) => {
+            const date = new Date(message.createdAt);
+
+            return message.userId === session.user.id ? (
               <li key={message.id}>
                 <div className="chat chat-end">
                   <div className="chat-header">
                     <time className="text-xs opacity-50 pr-1">
-                      {message.createdAt}
+                      {date.toLocaleTimeString()}
                     </time>
                     {message.name}
                   </div>
@@ -53,7 +54,7 @@ const Message = ({ groupId, data, setData, n, setN }) => {
                   <div className="chat-header">
                     {message.name}
                     <time className="text-xs opacity-50 pl-1">
-                      {message.createdAt}
+                      {date.toLocaleTimeString()}
                     </time>
                   </div>
                   <div className="chat-bubble chat-bubble-info">
@@ -61,8 +62,8 @@ const Message = ({ groupId, data, setData, n, setN }) => {
                   </div>
                 </div>
               </li>
-            )
-          )}
+            );
+          })}
         </ul>
       </div>
     </div>

@@ -14,11 +14,11 @@ const GroupList = () => {
 
   useEffect(() => {
     const fetchGroups = async () => {
-      const grouplist = await fetch(`/api/user/group`)
-      const res = await grouplist.json()
-      setGroups(res)
-        // .then((res) => res.json())
-        // .then((data) => setGroups(data));
+      const grouplist = await fetch(`/api/user/group`);
+      const res = await grouplist.json();
+      setGroups(res);
+      // .then((res) => res.json())
+      // .then((data) => setGroups(data));
     };
     if (status === "authenticated") {
       fetchGroups();
@@ -29,7 +29,7 @@ const GroupList = () => {
   }, [status]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen overflow-y-auto">
       <div>
         <div className="flex gap-x-2 m-2 p-3 bg-sky-200 rounded-md">
           <div className="flex items-center justify-center rounded-full w-6 h-6 bg-sky-300">
@@ -44,16 +44,18 @@ const GroupList = () => {
           </div>
         </div>
       </div>
-      {groups &&
-        groups.map((group) => (
-          <Link
-            href={`/${group.id}`}
-            className="p-5 md:hover:bg-red-200 border-b md:border-none border-gray-400 md:max-w-[240px] truncate"
-            key={group.id}
-          >
-            {group.title}
-          </Link>
-        ))}
+      <div className="flex flex-col">
+        {groups &&
+          groups.map((group) => (
+            <Link
+              href={`/${group.id}`}
+              className="p-5 md:hover:bg-red-200 border-b md:border-none border-gray-400 md:max-w-[240px] truncate"
+              key={group.id}
+            >
+              {group.title}
+            </Link>
+          ))}
+      </div>
     </div>
   );
 };

@@ -1,14 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 const CreatePage = () => {
   const [groupName, setGroupName] = useState("");
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    setIsSubmitting(true);
     e.preventDefault();
-    fetch("/api/groups", {
+    const res = await fetch("/api/groups", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,10 +18,16 @@ const CreatePage = () => {
       body: JSON.stringify({
         title: groupName,
       }),
-    }).then(res => res.json()).then((data) => {
+    });
+    if (res.status === 201) {
+      const data = await res.json();
       alert("Group created successfully");
+      setIsSubmitting(false);
       router.push(`/${data.newGroup.id}`);
-    })
+    } else {
+      alert("Something went wrong");
+      setIsSubmitting(false);
+    }
     setGroupName("");
   };
 
@@ -39,7 +47,11 @@ const CreatePage = () => {
         />
 
         <div className="flex justify-center mt-4">
-          <input type="submit" value="Create" className="btn w-fit" />
+          <input
+            type="submit"
+            value="Create"
+            className={`btn ${isSubmitting && "btn-disabled"} w-fit`}
+          />
         </div>
       </form>
     </div>
