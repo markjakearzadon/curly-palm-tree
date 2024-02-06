@@ -43,7 +43,7 @@ const TextInput = ({ data, setN }) => {
             setText(e.target.value);
           }}
         />
-        <input type="submit" value="Send" className="md:hidden" />
+        <button className={`${text ? "btn" : "btn btn-disabled"}`} onClick={() => handleSubmit()}>Send</button>
       </form>
     </div>
   );
