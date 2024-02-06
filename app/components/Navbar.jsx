@@ -11,7 +11,7 @@ const Navbar = async () => {
     <nav className="fixed w-full md:w-auto md:min-w-[600px] p-5 border-b">
       <div className="flex justify-between">
         <span>
-          <Link href="/">Nigga</Link>
+          <Link href="/">Anj</Link>
         </span>
         <div className="flex gap-x-3">
           {session ? (

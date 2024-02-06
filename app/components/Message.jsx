@@ -9,7 +9,7 @@ const Message = ({ groupId, data, setData, n, setN }) => {
     const controller = new AbortController();
 
     async function getMessages() {
-      fetch(`http://localhost:3000/api/groups/${parseInt(groupId)}`)
+      fetch(`/api/groups/${parseInt(groupId)}`)
         .then((res) => res.json())
         .then((d) => setData(d));
     }
