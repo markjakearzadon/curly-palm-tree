@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 
 const Navbar = async () => {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
 
   return (
     <nav className="fixed w-full md:w-auto md:min-w-[600px] p-5 border-b">
@@ -15,11 +15,12 @@ const Navbar = async () => {
         </span>
         <div className="flex gap-x-3">
           {session ? (
-            <Link href="/settings">{session?.user?.name || session?.user?.username}</Link>
+            <Link href="/settings">
+              {session?.user?.name || session?.user?.username}
+            </Link>
           ) : (
             <>
               <Link href="/api/auth/signin">Sign in</Link>
-              <Link href="/create/user">Sign up</Link>
             </>
           )}
         </div>
