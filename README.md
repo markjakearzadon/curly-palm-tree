@@ -1,3 +1,4 @@
+```json
 {
   "name": "curly-palm-tree",
   "version": "0.1.0",
@@ -28,3 +29,4 @@
     "tailwindcss": "^3.3.0"
   }
 }
+```
