@@ -15,22 +15,19 @@ const GroupList = () => {
   useEffect(() => {
     const fetchGroups = async () => {
       const grouplist = await fetch(`/api/user/group`, {
-        next: {
-          revalidate: 10,
-        },
+        next: { revalidate: 10 },
       });
       const res = await grouplist.json();
       setGroups(res);
       // .then((res) => res.json())
       // .then((data) => setGroups(data));
     };
-    if (status === "authenticated") {
-      fetchGroups();
-    }
     if (status === "unauthenticated") {
       router.push("/create/user");
+    } else {
+      fetchGroups();
     }
-  }, [status]);
+  }, []);
 
   return (
     <div className="flex flex-col h-screen overflow-y-auto">

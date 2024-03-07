@@ -16,7 +16,7 @@ const Message = ({ groupId, data, setData, n, setN }) => {
     getMessages();
     setN(false);
     return () => controller.abort();
-  }, [n]);
+  }, []);
 
   return (
     <div className="flex flex-col p-3 h-screen">
