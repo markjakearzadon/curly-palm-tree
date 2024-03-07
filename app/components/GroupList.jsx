@@ -14,7 +14,11 @@ const GroupList = () => {
 
   useEffect(() => {
     const fetchGroups = async () => {
-      const grouplist = await fetch(`/api/user/group`);
+      const grouplist = await fetch(`/api/user/group`, {
+        next: {
+          revalidate: 10,
+        },
+      });
       const res = await grouplist.json();
       setGroups(res);
       // .then((res) => res.json())
