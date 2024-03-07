@@ -49,7 +49,7 @@ const GroupList = () => {
           groups.map((group) => (
             <Link
               href={`/${group.id}`}
-              className="p-5 md:hover:bg-red-200 border-b md:border-none border-gray-400 md:max-w-[240px] truncate"
+              className="p-5 md:hover:bg-red-200 border-b md:border-none border-slate-50 md:max-w-[240px] truncate"
               key={group.id}
             >
               {group.title}
