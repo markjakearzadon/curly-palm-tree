@@ -22,7 +22,7 @@ const GroupList = () => {
       // .then((res) => res.json())
       // .then((data) => setGroups(data));
     };
-    if (status === "unauthenticated") {
+    if (status === "unauthenticated" || status === "loading") {
       router.push("/create/user");
     } else {
       fetchGroups();
