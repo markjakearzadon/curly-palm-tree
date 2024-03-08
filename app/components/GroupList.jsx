@@ -47,7 +47,7 @@ const GroupList = () => {
       </div>
       <div className="flex flex-col">
         {groups &&
-          groups.map((group) => (
+          groups?.map((group) => (
             <Link
               href={`/${group.id}`}
               className="p-5 md:hover:bg-red-200 border-b md:border-none border-slate-50 md:max-w-[240px] truncate"
